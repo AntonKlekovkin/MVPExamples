@@ -17,24 +17,24 @@ namespace AnimationExample
             ang = LimAngle(ang);
 
             var center = obj.Center;
-            center.X += (float)Math.Cos(ang) * obj.LinearVelocity * dt;
-            center.Y += (float)Math.Sin(ang) * obj.LinearVelocity * dt;
+            center.X += MathF.Cos(ang) * obj.LinearVelocity * dt;
+            center.Y += MathF.Sin(ang) * obj.LinearVelocity * dt;
 
-            obj.SetCoords(center, ang);
+            obj.SetCoords(center, ang);            
         }
 
         private static float LimAngle(float ang)
         {
-            while (ang > Math.PI) { ang -= (float)(2 * Math.PI); }
-            while (ang < -Math.PI) { ang += (float)(2 * Math.PI); }
+            while (ang > MathF.PI) { ang -= 2 * MathF.PI; }
+            while (ang < -MathF.PI) { ang += 2 * MathF.PI; }
             return ang;
         }
 
         public static Matrix3x2 GetTransformationMatrix(MovableObject o)
         {
             var ang = o.Angle;
-            return new Matrix3x2((float)Math.Cos(ang), (float)Math.Sin(ang),
-                                -(float)Math.Sin(ang), (float)Math.Cos(ang),
+            return new Matrix3x2(MathF.Cos(ang), MathF.Sin(ang),
+                                -MathF.Sin(ang), MathF.Cos(ang),
                                 o.Center.X, o.Center.Y);
         }
     }
